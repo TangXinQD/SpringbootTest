@@ -6,9 +6,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 /**
  * @Auther: TX
@@ -18,15 +19,33 @@ import java.util.function.Predicate;
 public class TestJdk8 {
 
     public static void  main(String [] args) throws IOException {
-//        String line = processFile((BufferedReader br) -> br.readLine());
+        lambdaTest2();
+    }
 
-        List<String > list = new ArrayList<>();
-        list.add("abc");
-        list.add("bdfa");
-        list.add("cfadsfa");
-        list.add("dfdafa");
+
+    //方法的引用
+    private static void lambdaTest2() throws IOException {
+
+        List<String > list = Arrays.asList("a","bb","Aa","Bb");
+
+        list.sort(Comparator.comparing(String::length).reversed().thenComparing(String::hashCode));
+//        list.sort((String a,String b)->a.compareToIgnoreCase(b));
+//        list.sort(String :: compareToIgnoreCase);
+        System.out.println(list);
+    }
+
+    //lambda表达式
+    private static void lambdaTest1() throws IOException {
+        String line = processFile((BufferedReader br) -> br.readLine());
+
+        List<String > list = Arrays.asList("a","b","A","B");
+
         List<Integer> results = filter(list, (String s) -> s.length());
+        List<Integer> results1 = filter(list, String::length);
 
+        list.sort((String a,String b)->a.compareToIgnoreCase(b));
+        list.sort(String :: compareToIgnoreCase);
+        System.out.println(list);
         System.out.println(results);
     }
 
@@ -39,7 +58,7 @@ public class TestJdk8 {
         }
     }
 
-    public static <T> List<T> filter(List<T> list ,Predicate<T> predicate) throws IOException{
+    /*public static <T> List<T> filter(List<T> list ,Predicate<T> predicate) throws IOException{
         List<T> results = new ArrayList<>();
         for (T t : list) {
             if(predicate.test(t)){
@@ -47,7 +66,7 @@ public class TestJdk8 {
             }
         }
         return  results;
-    }
+    }*/
 
     public static <T,R> List<R> filter(List<T> list ,Function<T,R> function) throws IOException{
         List<R> results = new ArrayList<>();
