@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "user",description = "entity")
 public class User {
 
-    @ApiModelProperty(name = "id",value = "id",required = true)
+//    @ApiModelProperty(name = "id",value = "id",required = true)
     private Integer id;
 
     @ApiModelProperty(name = "name",value = "name",required = true)
