@@ -1,5 +1,7 @@
 package com.example.demo.LambdaDemo;
 
+import java.util.Optional;
+
 /**
  * @Auther: TX
  * @Date: 2018/10/22 0022 16:02
@@ -10,6 +12,19 @@ public class User {
     private String userName;
 
     private Integer age;
+
+    /**
+     *
+     */
+    private Optional<Role> role;
+
+    public Optional<Role> getRole() {
+        return role;
+    }
+
+    public void setRole(Optional<Role> role) {
+        this.role = role;
+    }
 
     public String getUserName() {
         return userName;

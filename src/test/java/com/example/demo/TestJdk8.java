@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.LambdaDemo.BufferedReaderProcessor;
+import com.example.demo.LambdaDemo.Role;
 import com.example.demo.LambdaDemo.User;
 
 import java.io.BufferedReader;
@@ -17,6 +18,30 @@ import java.util.function.Function;
 public class TestJdk8 {
 
     public static void  main(String [] args) throws IOException {
+
+        optionalTest();
+
+
+    }
+
+    private static void optionalTest() {
+        User user = new User();
+
+        System.out.println(user.getRole());
+
+        //创建一个空的Optional对象
+        Optional<Role> roleOpl = Optional.empty();
+
+        Role role = new Role();
+
+        //依据一个非空的值创建Optional,如果role == null ,throw NullPointException.
+        Optional<Role> roleOpl1 = Optional.of(role);
+
+        //创建一个可以为null值的Optional对象
+        Optional<Role> roleOptional = Optional.ofNullable(role);
+    }
+
+    private static void streamTest() {
         List<User> list = new LinkedList<>();
 
         for (int i = 0 ; i<10 ; i ++){
@@ -32,7 +57,6 @@ public class TestJdk8 {
                 sorted(Comparator.comparing(User::getAge).reversed()).
                 map(User::getUserName).
                 forEach( System.out:: println);
-
     }
 
 
