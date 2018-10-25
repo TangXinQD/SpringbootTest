@@ -1,14 +1,12 @@
 package com.example.demo;
 
 import com.example.demo.LambdaDemo.BufferedReaderProcessor;
+import com.example.demo.LambdaDemo.User;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 
 /**
@@ -19,7 +17,22 @@ import java.util.function.Function;
 public class TestJdk8 {
 
     public static void  main(String [] args) throws IOException {
-        lambdaTest2();
+        List<User> list = new LinkedList<>();
+
+        for (int i = 0 ; i<10 ; i ++){
+            User user = new User();
+
+            user.setUserName(i+"YourName");
+            user.setAge(i+11);
+
+            list.add(user);
+        }
+
+        list.stream().filter(user -> user.getAge() < 15).
+                sorted(Comparator.comparing(User::getAge).reversed()).
+                map(User::getUserName).
+                forEach( System.out:: println);
+
     }
 
 
