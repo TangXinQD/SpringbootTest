@@ -1,6 +1,7 @@
 package com.example.demo.thread;
 
 import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Auther: TX
@@ -8,6 +9,9 @@ import java.io.IOException;
  * @Description: 多线程
  */
 public class ThreadPoolTest {
+
+
+    private ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
 
     public static void  main(String [] args) throws IOException {
 
