@@ -43,6 +43,17 @@ public interface DenyPolicy {
     }
 
 
+/*
 
+    //抛出异常通知
+    class AbortPolicy implements DenyPolicy {
+
+        @Override
+        public void reject(Runnable runnable, ThreadPool threadPool) {
+
+//            throw new RunnableDenyException("This runnable is be abort! name :" + runnable);
+        }
+    }
+*/
 
 }
