@@ -8,5 +8,5 @@ import com.demo.domain.Banner;
  * @Description:
  */
 public interface BannerService {
-    public int insert(Banner banner);
+    public int insert(Banner banner) throws Exception;
 }

@@ -2,6 +2,7 @@ package com.demo.controller;
 
 import com.demo.domain.Banner;
 import com.demo.service.BannerService;
+import com.demo.util.annotation.SystemControllerLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -28,9 +29,10 @@ public class BannerController {
     @Resource
     private BannerService bannerService;
 
+    @SystemControllerLog(description = "bannerController")
     @ApiOperation(value = "添加banner",notes = "添加banner",httpMethod = "POST",produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping
-    public Object add(@RequestBody  Banner banner){
+    public Object add(@RequestBody  Banner banner) throws Exception{
         return bannerService.insert(banner);
 
     }

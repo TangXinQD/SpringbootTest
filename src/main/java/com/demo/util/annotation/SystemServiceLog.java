@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD,ElementType.PARAMETER})// 方法 参数注解
 @Retention(RetentionPolicy.RUNTIME) //runtime
 @Documented //javadoc
-public @interface SystemSeviceLog {
+public @interface SystemServiceLog {
 
     String description() default "";
 }

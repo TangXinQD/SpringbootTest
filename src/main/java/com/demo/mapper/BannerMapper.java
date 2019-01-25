@@ -2,7 +2,9 @@ package com.demo.mapper;
 
 import com.demo.domain.Banner;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
+@Repository
 @Mapper
 public interface BannerMapper {
 
