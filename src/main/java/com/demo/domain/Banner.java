@@ -108,4 +108,19 @@ public class Banner {
     public void setDisplay(Boolean display) {
         this.display = display;
     }
+
+    @Override
+    public String toString() {
+        return "Banner{" +
+                "id=" + id +
+                ", directUrl='" + directUrl + '\'' +
+                ", title='" + title + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", typeId=" + typeId +
+                ", createTime=" + createTime +
+                ", createUserId='" + createUserId + '\'' +
+                ", sort=" + sort +
+                ", display=" + display +
+                '}';
+    }
 }

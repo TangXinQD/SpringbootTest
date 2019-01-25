@@ -1,14 +1,24 @@
 package com.demo.util.aspect;
 
+import com.demo.domain.Log;
+import com.demo.service.LogService;
 import com.demo.util.annotation.SystemControllerLog;
+import com.demo.util.annotation.SystemServiceLog;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.util.Date;
 
 /**
  * @Auther: TX
@@ -19,7 +29,15 @@ import java.lang.reflect.Method;
 @Component
 public class SystemLogAspect {
 
-    //定义切点
+    @Resource
+    private LogService logService;
+    //本地异常日志记录对象
+    private static final Logger logger = LoggerFactory.getLogger(SystemLogAspect.class);
+
+    public static final Byte LOG_TYPE_0 = 0;//类型 :0-前置通知；1-异常通知
+    public static final Byte LOG_TYPE_1 = 1;//类型 :0-前置通知；1-异常通知
+
+    //-
     @Pointcut("@annotation(com.demo.util.annotation.SystemServiceLog)")
     public void  servicePointcut(){
     }
@@ -31,33 +49,97 @@ public class SystemLogAspect {
     // 系统日志
     @Before(value = "controllerPointcut()")
     public void before(JoinPoint joinPoint) throws ClassNotFoundException {
-        String targetName = joinPoint.getTarget().getClass().getName();
-        Object[] args = joinPoint.getArgs();
-        String methodName = joinPoint.getSignature().getName();
-        Class<?> clazz = Class.forName(targetName);
-        Method[] methods = clazz.getMethods();
-        for (Method method : methods) {
-            String name = method.getName();
-            if(name.equals(methodName)){
-                String description = method.getAnnotation(SystemControllerLog.class).description();
-            }
+
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+
+        String ip = request.getRemoteAddr();
+        try {
+            Log log = new Log();
+            log.setCreateTime(new Date());
+            log.setDescription(getControllerDescription(joinPoint));
+            log.setMethod((joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()"));
+            log.setRequestIp(ip);
+            log.setType(LOG_TYPE_0);
+            log.setArgs(getArgsString(joinPoint));
+
+            logService.insert(log);
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
+
+
+
 
     // service 抛出错误记录
     @AfterThrowing(value = "servicePointcut()",throwing = "e")
     public void afterThrowException(JoinPoint joinPoint, Throwable e) throws ClassNotFoundException {
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+
+        String ip = request.getRemoteAddr();
+
+        try {
+
+            Log log = new Log();
+            log.setCreateTime(new Date());
+            log.setDescription(getServiceDescription(joinPoint));
+            log.setMethod((joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()"));
+            log.setRequestIp(ip);
+            log.setType(LOG_TYPE_1);
+            log.setArgs(getArgsString(joinPoint));
+            log.setExceptionCode(e.getClass().getName());
+            log.setExceptionDetail(e.getMessage());
+
+            logService.insert(log);
+        }catch (Exception ep){
+            ep.printStackTrace();
+            logger.error(ep.getMessage());
+        }
+    }
+
+    private String getControllerDescription(JoinPoint joinPoint) throws ClassNotFoundException {
         String targetName = joinPoint.getTarget().getClass().getName();
         Object[] args = joinPoint.getArgs();
         String methodName = joinPoint.getSignature().getName();
         Class<?> clazz = Class.forName(targetName);
+        String description = "";
         Method[] methods = clazz.getMethods();
         for (Method method : methods) {
             String name = method.getName();
             if(name.equals(methodName)){
-                String description = method.getAnnotation(SystemControllerLog.class).description();
+                description = method.getAnnotation(SystemControllerLog.class).description();
             }
         }
+
+        return description;
     }
 
+    private String getServiceDescription(JoinPoint joinPoint) throws ClassNotFoundException {
+        String targetName = joinPoint.getTarget().getClass().getName();
+        Object[] args = joinPoint.getArgs();
+        String methodName = joinPoint.getSignature().getName();
+        Class<?> clazz = Class.forName(targetName);
+        String description = "";
+        Method[] methods = clazz.getMethods();
+        for (Method method : methods) {
+            String name = method.getName();
+            if(name.equals(methodName)){
+                description = method.getAnnotation(SystemServiceLog.class).description();
+            }
+        }
+        return description;
+    }
+
+
+    private String getArgsString(JoinPoint joinPoint) {
+        StringBuffer sb = new StringBuffer();
+        Object[] args = joinPoint.getArgs();
+        for (Object arg : args) {
+            sb.append(arg.toString());
+        }
+        return sb.toString();
+    }
 }

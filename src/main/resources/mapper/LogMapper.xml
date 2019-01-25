@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.mapper.LogMapper" >
+
+    <resultMap id="BaseResultMap" type="com.demo.domain.Log" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="type" property="type" jdbcType="TINYINT" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="request_ip" property="requestIp" jdbcType="VARCHAR" />
+        <result column="method" property="method" jdbcType="VARCHAR" />
+        <result column="exception_code" property="exceptionCode" jdbcType="VARCHAR" />
+        <result column="exception_detail" property="exceptionDetail" jdbcType="VARCHAR" />
+        <result column="args" property="args" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, create_by, create_time, type, description, request_ip, method, exception_code, 
+        exception_detail, args
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from t_log
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from t_log
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.demo.domain.Log" >
+        insert into t_log (id, create_by, create_time, 
+            type, description, request_ip, 
+            method, exception_code, exception_detail, 
+            args)
+        values (#{id,jdbcType=BIGINT}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+            #{type,jdbcType=TINYINT}, #{description,jdbcType=VARCHAR}, #{requestIp,jdbcType=VARCHAR}, 
+            #{method,jdbcType=VARCHAR}, #{exceptionCode,jdbcType=VARCHAR}, #{exceptionDetail,jdbcType=VARCHAR}, 
+            #{args,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.demo.domain.Log" >
+        insert into t_log
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="createBy != null" >
+                create_by,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="description != null" >
+                description,
+            </if>
+            <if test="requestIp != null" >
+                request_ip,
+            </if>
+            <if test="method != null" >
+                method,
+            </if>
+            <if test="exceptionCode != null" >
+                exception_code,
+            </if>
+            <if test="exceptionDetail != null" >
+                exception_detail,
+            </if>
+            <if test="args != null" >
+                args,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="createBy != null" >
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type != null" >
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="description != null" >
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="requestIp != null" >
+                #{requestIp,jdbcType=VARCHAR},
+            </if>
+            <if test="method != null" >
+                #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="exceptionCode != null" >
+                #{exceptionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="exceptionDetail != null" >
+                #{exceptionDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="args != null" >
+                #{args,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.demo.domain.Log" >
+        update t_log
+        <set >
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type != null" >
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="description != null" >
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="requestIp != null" >
+                request_ip = #{requestIp,jdbcType=VARCHAR},
+            </if>
+            <if test="method != null" >
+                method = #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="exceptionCode != null" >
+                exception_code = #{exceptionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="exceptionDetail != null" >
+                exception_detail = #{exceptionDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="args != null" >
+                args = #{args,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.demo.domain.Log" >
+        update t_log
+        set create_by = #{createBy,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            type = #{type,jdbcType=TINYINT},
+            description = #{description,jdbcType=VARCHAR},
+            request_ip = #{requestIp,jdbcType=VARCHAR},
+            method = #{method,jdbcType=VARCHAR},
+            exception_code = #{exceptionCode,jdbcType=VARCHAR},
+            exception_detail = #{exceptionDetail,jdbcType=VARCHAR},
+            args = #{args,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
