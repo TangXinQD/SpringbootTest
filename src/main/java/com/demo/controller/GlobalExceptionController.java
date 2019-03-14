@@ -19,9 +19,9 @@ public class GlobalExceptionController {
 
     @ExceptionHandler(Exception.class)
     public Object globalException(HttpServletRequest request , Exception e ){
-        logger.info("code:{},msg :{}",e.getMessage(),e.getCause().getMessage());
+//        logger.info("code:{},msg :{}",e.getMessage(),e.getCause().getMessage());
         ErrorInfo<String> errorInfo = new ErrorInfo();
-        errorInfo.setMessage(e.getCause().getMessage());
+        errorInfo.setMessage(e.getMessage());
         //.....
         return  errorInfo;
     }
