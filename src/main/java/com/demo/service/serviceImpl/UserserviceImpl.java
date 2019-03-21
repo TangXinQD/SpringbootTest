@@ -1,8 +1,11 @@
 package com.demo.service.serviceImpl;
 
 import com.demo.domain.User;
+import com.demo.listener.event.DemoApplicationEvent;
 import com.demo.mapper.UserMapper;
 import com.demo.service.UserService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,8 +21,23 @@ public class UserserviceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private ApplicationContext applicationContext;
+
     @Override
     public int insert(User user) {
-        return userMapper.insert(user);
+
+        int id = userMapper.insert(user);
+
+        applicationContext.publishEvent(new DemoApplicationEvent(this,user));
+        return id;
+    }
+
+    @EventListener(classes = {DemoApplicationEvent.class})
+    public void onApplicationEvent(DemoApplicationEvent event) {
+
+        User user = event.getUser();
+        System.out.println("×¢½â¼àÌý£º"+user.getId());
+
     }
 }
