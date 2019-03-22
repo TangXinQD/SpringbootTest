@@ -24,7 +24,7 @@ public class DemoListener implements ApplicationListener<DemoApplicationEvent> {
 
         User user = event.getUser();
         Object source = event.getSource();
-
-        System.out.println(user.getId()+"监听器");
+        int i =1/0;
+        System.out.println(user.getId()+"监听器,ThreadName:"+Thread.currentThread().getName());
     }
 }
