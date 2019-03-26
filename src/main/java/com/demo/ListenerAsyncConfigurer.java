@@ -32,6 +32,7 @@ public class ListenerAsyncConfigurer implements AsyncConfigurer {
         return executor;
     }
 
+
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
 
