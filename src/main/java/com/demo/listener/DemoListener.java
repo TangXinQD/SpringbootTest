@@ -4,6 +4,7 @@ import com.demo.Jms.JmsSender;
 import com.demo.domain.User;
 import com.demo.listener.event.DemoApplicationEvent;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.annotation.Async;
@@ -31,6 +32,6 @@ public class DemoListener implements ApplicationListener<DemoApplicationEvent> {
         User user = event.getUser();
         Object source = event.getSource();
         System.out.println(user.getId()+"监听器,ThreadName:"+Thread.currentThread().getName());
-        jmsSender.sendMessage(new ActiveMQQueue("queue_user"), user.getId()+user.getUserName());
+        jmsSender.sendMessage(new ActiveMQTopic("topic_user"), user.getId()+user.getUserName());
     }
 }

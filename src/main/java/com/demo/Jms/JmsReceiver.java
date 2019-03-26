@@ -39,4 +39,26 @@ public class JmsReceiver {
             session.recover();
         }
     }
+
+    @JmsListener(destination = "topic_user",containerFactory = "jmsTopicListener")
+    public void receiveTopic1(final TextMessage textMessage , Session session) throws JMSException {
+
+        try {
+            System.out.println(textMessage.getText());
+            textMessage.acknowledge();
+        } catch (JMSException e) {
+            session.recover();
+        }
+    }
+
+    @JmsListener(destination = "topic_user",containerFactory = "jmsTopicListener")
+    public void receiveTopic2(final TextMessage textMessage , Session session) throws JMSException {
+
+        try {
+            System.out.println(textMessage.getText());
+            textMessage.acknowledge();
+        } catch (JMSException e) {
+            session.recover();
+        }
+    }
 }

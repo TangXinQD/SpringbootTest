@@ -66,15 +66,28 @@ public class ActiveMQConfigurer {
         return activeMQConnectionFactory;
     }
 
-    @Bean
-    public JmsTemplate jmsTemplate(ActiveMQConnectionFactory activeMQConnectionFactory){
+    @Bean("jmsQueueTemplate")
+    public JmsTemplate jmsQuequTemplate(ActiveMQConnectionFactory activeMQConnectionFactory){
         JmsTemplate jmsTemplate=new JmsTemplate();
         jmsTemplate.setDeliveryMode(2);//进行持久化配置 1表示非持久化，2表示持久化
         jmsTemplate.setConnectionFactory(activeMQConnectionFactory);
 //        jmsTemplate.setDefaultDestination(queue); //此处可不设置默认，在发送消息时也可设置队列
         jmsTemplate.setSessionAcknowledgeMode(4);//客户端签收模式
+        jmsTemplate.setPubSubDomain(false);
         return jmsTemplate;
     }
+
+    @Bean("jmsTopicTemplate")
+    public JmsTemplate jmsTopicTemplate(ActiveMQConnectionFactory activeMQConnectionFactory){
+        JmsTemplate jmsTemplate=new JmsTemplate();
+        jmsTemplate.setDeliveryMode(2);//进行持久化配置 1表示非持久化，2表示持久化
+        jmsTemplate.setConnectionFactory(activeMQConnectionFactory);
+//        jmsTemplate.setDefaultDestination(queue); //此处可不设置默认，在发送消息时也可设置队列
+        jmsTemplate.setSessionAcknowledgeMode(4);//客户端签收模式
+        jmsTemplate.setPubSubDomain(true);
+        return jmsTemplate;
+    }
+
 
 
     //定义一个消息监听器连接工厂，这里定义的是点对点模式的监听器连接工厂
@@ -88,6 +101,23 @@ public class ActiveMQConfigurer {
         //重连间隔时间
         factory.setRecoveryInterval(1000L);
         factory.setSessionAcknowledgeMode(4);
+        factory.setPubSubDomain(false);
+        return factory;
+    }
+
+    //定义一个消息监听器连接工厂，这里定义的是点对点模式的监听器连接工厂
+    @Bean(name = "jmsTopicListener")
+    public DefaultJmsListenerContainerFactory jmsTopicListenerContainerFactory(ActiveMQConnectionFactory activeMQConnectionFactory) {
+        DefaultJmsListenerContainerFactory factory =
+                new DefaultJmsListenerContainerFactory();
+        factory.setConnectionFactory(activeMQConnectionFactory);
+        //设置连接数
+        factory.setConcurrency("1-10");
+        //重连间隔时间
+        factory.setRecoveryInterval(1000L);
+        factory.setSessionAcknowledgeMode(4);
+        factory.setPubSubDomain(true);
+        factory.setMaxMessagesPerTask(1);
         return factory;
     }
 
