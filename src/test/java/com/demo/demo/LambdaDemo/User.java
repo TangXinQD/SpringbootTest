@@ -1,5 +1,6 @@
 package com.demo.demo.LambdaDemo;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 /**
@@ -7,8 +8,9 @@ import java.util.Optional;
  * @Date: 2018/10/22 0022 16:02
  * @Description:
  */
-public class User {
+public class User implements Serializable{
 
+    private static final long serialVersionUID =-1L;
     private String userName;
 
     private Integer age;

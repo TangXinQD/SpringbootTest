@@ -37,7 +37,7 @@ public class UserserviceImpl implements UserService {
     public void onApplicationEvent(DemoApplicationEvent event) {
 
         User user = event.getUser();
-        System.out.println("×¢½â¼àÌý£º"+user.getId());
+        System.out.println("ç”µé£Žæ‰‡"+user.getId());
 
     }*/
 }

@@ -3,18 +3,21 @@ package com.demo.demo;
 import com.demo.demo.LambdaDemo.BufferedReaderProcessor;
 import com.demo.demo.LambdaDemo.Role;
 import com.demo.demo.LambdaDemo.User;
+import org.springframework.context.annotation.PropertySource;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @Auther: TX
  * @Date: 2018/10/18 0018 11:39
  * @Description:
  */
+@PropertySource({""})
 public class TestJdk8 {
 
     public static void  main(String [] args) throws IOException {
@@ -53,10 +56,10 @@ public class TestJdk8 {
             list.add(user);
         }
 
-        list.stream().filter(user -> user.getAge() < 15).
+        List<String> collect = list.stream().filter(user -> user.getAge() < 15).
                 sorted(Comparator.comparing(User::getAge).reversed()).
-                map(User::getUserName).
-                forEach( System.out:: println);
+                map(User::getUserName).collect(Collectors.toList());
+
     }
 
 

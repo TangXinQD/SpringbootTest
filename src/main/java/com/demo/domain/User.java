@@ -3,10 +3,11 @@ package com.demo.domain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @ApiModel(value = "user",description = "entity")
-public class User {
+public class User  implements Serializable{
 
 //    @ApiModelProperty(name = "id",value = "id",required = true)
     private Long id;

@@ -1,7 +1,10 @@
 package com.demo.listener;
 
+import com.demo.Jms.JmsSender;
 import com.demo.domain.User;
 import com.demo.listener.event.DemoApplicationEvent;
+import org.apache.activemq.command.ActiveMQQueue;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -14,6 +17,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class DemoListener implements ApplicationListener<DemoApplicationEvent> {
 
+    @Autowired
+    private JmsSender jmsSender;
+
     /**
      * 监听
      * @param event
@@ -24,7 +30,7 @@ public class DemoListener implements ApplicationListener<DemoApplicationEvent> {
 
         User user = event.getUser();
         Object source = event.getSource();
-        int i =1/0;
         System.out.println(user.getId()+"监听器,ThreadName:"+Thread.currentThread().getName());
+        jmsSender.sendMessage(new ActiveMQQueue("queue_user"), user.getId()+user.getUserName());
     }
 }
