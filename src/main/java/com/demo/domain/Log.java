@@ -1,5 +1,7 @@
 package com.demo.domain;
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
@@ -9,6 +11,7 @@ import java.util.Date;
  * 
  * @date 2019-01-25
  */
+@Data
 public class Log {
     private Long id;
 
