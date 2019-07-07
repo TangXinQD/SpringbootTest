@@ -33,14 +33,11 @@ public class ListenerAsyncConfigurer implements AsyncConfigurer {
     }
 
 
-
-
-
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
 
         return (Throwable ex, Method method, Object... params) -> {
-            System.out.println("异步方法未处理异常:"+ex.getMessage()+",method:"+method.getName());
+            System.out.println("异步方法未处理异常:" + ex.getMessage() + ",method:" + method.getName());
         };
     }
 }
