@@ -3,6 +3,8 @@ package com.demo.demo;
 import com.demo.demo.LambdaDemo.BufferedReaderProcessor;
 import com.demo.demo.LambdaDemo.Role;
 import com.demo.demo.LambdaDemo.User;
+import com.demo.demo.kyTest.GetResultVo;
+import com.demo.util.BeanHelper;
 import org.springframework.context.annotation.PropertySource;
 
 import java.io.BufferedReader;
@@ -23,7 +25,7 @@ import java.util.stream.Collectors;
 @PropertySource({""})
 public class TestJdk8 {
 
-    public static void  main(String [] args) throws IOException {
+    public static void  main(String [] args) throws Exception {
 
 //        optionalTest();
 /*
@@ -38,11 +40,20 @@ public class TestJdk8 {
 
         System.out.println(Arrays.toString(list.toArray()));*/
 //        streamTest();
-        DateTimeFormatter ymd = DateTimeFormatter.ofPattern("yyyy-MM");
+       /* DateTimeFormatter ymd = DateTimeFormatter.ofPattern("yyyy-MM");
         LocalDate localDate = LocalDate.parse("2019-08",ymd);
         String start = localDate.with(TemporalAdjusters.firstDayOfMonth()).toString();
         String end = localDate.with(TemporalAdjusters.lastDayOfMonth()).toString() +" 23:59:59";
-        System.out.println(start+"--"+end);
+        System.out.println(start+"--"+end);*/
+        GetResultVo vo = new GetResultVo();
+        vo.setImgCode(" a ");
+        vo.setBankCode(" b ");
+        vo.setImgCode(" c ");
+        vo.setImgCode(" d ");
+
+        BeanHelper.beanAttributeValueTrim(vo);
+
+        System.out.println(vo);
 
     }
 
