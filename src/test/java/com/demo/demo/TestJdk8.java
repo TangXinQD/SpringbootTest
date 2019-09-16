@@ -8,6 +8,9 @@ import org.springframework.context.annotation.PropertySource;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -23,7 +26,7 @@ public class TestJdk8 {
     public static void  main(String [] args) throws IOException {
 
 //        optionalTest();
-
+/*
         List<Integer> list = new ArrayList<>();
 
         list.add(1);
@@ -33,7 +36,13 @@ public class TestJdk8 {
         list.add(4);
         list.add(3);
 
-        System.out.println(Arrays.toString(list.toArray()));
+        System.out.println(Arrays.toString(list.toArray()));*/
+//        streamTest();
+        DateTimeFormatter ymd = DateTimeFormatter.ofPattern("yyyy-MM");
+        LocalDate localDate = LocalDate.parse("2019-08",ymd);
+        String start = localDate.with(TemporalAdjusters.firstDayOfMonth()).toString();
+        String end = localDate.with(TemporalAdjusters.lastDayOfMonth()).toString() +" 23:59:59";
+        System.out.println(start+"--"+end);
 
     }
 
@@ -51,7 +60,7 @@ public class TestJdk8 {
         Optional<Role> roleOpl1 = Optional.of(role);
 
         //创建一个可以为null值的Optional对象
-        Optional<Role> roleOptional = Optional.ofNullable(role);
+       Optional.ofNullable(role).map(Role::getContent).orElse(null);
     }
 
     private static void streamTest() {
@@ -69,7 +78,7 @@ public class TestJdk8 {
         List<String> collect = list.stream().filter(user -> user.getAge() < 15).
                 sorted(Comparator.comparing(User::getAge).reversed()).
                 map(User::getUserName).collect(Collectors.toList());
-
+        System.out.println(collect.toString());
     }
 
 
