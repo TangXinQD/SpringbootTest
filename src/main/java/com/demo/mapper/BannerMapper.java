@@ -1,8 +1,12 @@
 package com.demo.mapper;
 
 import com.demo.domain.Banner;
+import com.demo.domain.XYTS;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 
 @Repository
 @Mapper
@@ -19,6 +23,9 @@ public interface BannerMapper {
 
     @Select("select * from t_banner where id = #{id}")
     Banner selectByPrimaryKey(Integer id);
+
+    @Select("select * from xyts_pos_customer ")
+    List<XYTS> findCustomer();
 
    /* int updateByPrimaryKeySelective(Banner banner);
 

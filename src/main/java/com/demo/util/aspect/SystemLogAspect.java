@@ -34,8 +34,14 @@ public class SystemLogAspect {
     //本地异常日志记录对象
     private static final Logger logger = LoggerFactory.getLogger(SystemLogAspect.class);
 
-    public static final Byte LOG_TYPE_0 = 0;//类型 :0-前置通知；1-异常通知
-    public static final Byte LOG_TYPE_1 = 1;//类型 :0-前置通知；1-异常通知
+    /**
+     * 类型 :0-前置通知；1-异常通知
+     **/
+    public static final Byte LOG_TYPE_0 = 0;
+    /**
+     * 类型 :0-前置通知；1-异常通知
+     **/
+    public static final Byte LOG_TYPE_1 = 1;
 
     //-
     @Pointcut("@annotation(com.demo.util.annotation.SystemServiceLog)")

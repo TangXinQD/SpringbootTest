@@ -7,7 +7,8 @@
  * History:
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
- */
+ *//*
+
 package com.demo;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -19,6 +20,7 @@ import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
+*/
 /**
  *
  * 〈activeMq\〉
@@ -26,17 +28,20 @@ import org.springframework.jms.core.JmsTemplate;
  * @author TX
  * @create 2019/3/26
  * @since 1.0.0
- */
-@Configuration
-@EnableJms
+ *//*
+
+//@Configuration
+//@EnableJms
 public class ActiveMQConfigurer {
 
 
-    /**
+    */
+/**
      * 消息重发协议
      * @return
-     */
-    @Bean
+     *//*
+
+//    @Bean
     public RedeliveryPolicy redeliveryPolicy(){
         RedeliveryPolicy  redeliveryPolicy=   new RedeliveryPolicy();
         //是否在每次尝试重新发送失败后,增长这个等待时间
@@ -55,7 +60,7 @@ public class ActiveMQConfigurer {
     }
 
 
-    @Bean
+//    @Bean
     public ActiveMQConnectionFactory activeMQConnectionFactory (@Value("${activemq.url}")String url, RedeliveryPolicy redeliveryPolicy){
         ActiveMQConnectionFactory activeMQConnectionFactory =
                 new ActiveMQConnectionFactory(
@@ -66,7 +71,7 @@ public class ActiveMQConfigurer {
         return activeMQConnectionFactory;
     }
 
-    @Bean("jmsQueueTemplate")
+//    @Bean("jmsQueueTemplate")
     public JmsTemplate jmsQuequTemplate(ActiveMQConnectionFactory activeMQConnectionFactory){
         JmsTemplate jmsTemplate=new JmsTemplate();
         jmsTemplate.setDeliveryMode(2);//进行持久化配置 1表示非持久化，2表示持久化
@@ -77,7 +82,7 @@ public class ActiveMQConfigurer {
         return jmsTemplate;
     }
 
-    @Bean("jmsTopicTemplate")
+//    @Bean("jmsTopicTemplate")
     public JmsTemplate jmsTopicTemplate(ActiveMQConnectionFactory activeMQConnectionFactory){
         JmsTemplate jmsTemplate=new JmsTemplate();
         jmsTemplate.setDeliveryMode(2);//进行持久化配置 1表示非持久化，2表示持久化
@@ -91,7 +96,7 @@ public class ActiveMQConfigurer {
 
 
     //定义一个消息监听器连接工厂，这里定义的是点对点模式的监听器连接工厂
-    @Bean(name = "jmsQueueListener")
+//    @Bean(name = "jmsQueueListener")
     public DefaultJmsListenerContainerFactory jmsQueueListenerContainerFactory(ActiveMQConnectionFactory activeMQConnectionFactory) {
         DefaultJmsListenerContainerFactory factory =
                 new DefaultJmsListenerContainerFactory();
@@ -106,7 +111,7 @@ public class ActiveMQConfigurer {
     }
 
     //定义一个消息监听器连接工厂，这里定义的是点对点模式的监听器连接工厂
-    @Bean(name = "jmsTopicListener")
+//    @Bean(name = "jmsTopicListener")
     public DefaultJmsListenerContainerFactory jmsTopicListenerContainerFactory(ActiveMQConnectionFactory activeMQConnectionFactory) {
         DefaultJmsListenerContainerFactory factory =
                 new DefaultJmsListenerContainerFactory();
@@ -123,3 +128,4 @@ public class ActiveMQConfigurer {
 
 
 }
+*/

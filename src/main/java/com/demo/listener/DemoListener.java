@@ -1,3 +1,4 @@
+/*
 package com.demo.listener;
 
 import com.demo.Jms.JmsSender;
@@ -10,21 +11,25 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+*/
 /**
  * @Auther: TX
  * @Date: 2019/3/21 15:37
  * @Description:
- */
+ *//*
+
 @Component
 public class DemoListener implements ApplicationListener<DemoApplicationEvent> {
 
     @Autowired
     private JmsSender jmsSender;
 
-    /**
+    */
+/**
      * 监听
      * @param event
-     */
+     *//*
+
     @Async
     @Override
     public void onApplicationEvent(DemoApplicationEvent event) {
@@ -35,3 +40,4 @@ public class DemoListener implements ApplicationListener<DemoApplicationEvent> {
         jmsSender.sendMessage(new ActiveMQTopic("topic_user"), user.getId()+user.getUserName());
     }
 }
+*/

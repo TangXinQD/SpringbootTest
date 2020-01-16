@@ -1,7 +1,9 @@
 package com.demo.controller;
 
 import com.demo.domain.User;
+import com.demo.domain.XYTS;
 import com.demo.exception.UserException;
+import com.demo.mapper.BannerMapper;
 import com.demo.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -13,7 +15,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Api(value = "用户管理",description = "用户管理")
@@ -25,6 +29,11 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    /**
+     *
+     * @param user 用户信息
+     * @return result
+     */
     @ApiOperation(value = "添加用户",notes = "根据User添加用户",httpMethod = "POST",produces = MediaType.APPLICATION_JSON_VALUE)
 //    @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
     @PostMapping("/add")
@@ -60,10 +69,18 @@ public class UserController {
     }
 
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws UserException
+     */
     @ApiOperation(value="查询用户",httpMethod = "GET")
     @GetMapping("/{id}")
     public  Object findOne(@PathVariable Long id) throws UserException {
         logger.info("id:{}",id);
+        LocalDateTime time = LocalDateTime.now();
         throw new UserException("errorCode","Do not find user!!");
     }
+
 }

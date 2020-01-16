@@ -7,7 +7,8 @@
  * History:
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
- */
+ *//*
+
 package com.demo.Jms;
 
 import org.springframework.jms.annotation.JmsListener;
@@ -17,6 +18,7 @@ import javax.jms.JMSException;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
+*/
 /**
  *
  * 〈〉
@@ -24,7 +26,8 @@ import javax.jms.TextMessage;
  * @author TX
  * @create 2019/3/26
  * @since 1.0.0
- */
+ *//*
+
 @Component
 public class JmsReceiver {
 
@@ -62,3 +65,4 @@ public class JmsReceiver {
         }
     }
 }
+*/

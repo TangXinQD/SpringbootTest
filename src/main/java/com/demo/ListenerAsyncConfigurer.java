@@ -1,3 +1,4 @@
+/*
 package com.demo;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
@@ -10,15 +11,17 @@ import java.lang.reflect.Method;
 import java.util.concurrent.Executor;
 
 
+*/
 /**
  * @Auther: TX
  * @Date: 2019/3/21 17:18
  * @Description:
- **/
+ **//*
 
 
-@Configuration
-@EnableAsync
+
+//@Configuration
+//@EnableAsync
 public class ListenerAsyncConfigurer implements AsyncConfigurer {
 
     @Override
@@ -45,3 +48,4 @@ public class ListenerAsyncConfigurer implements AsyncConfigurer {
 
 
 
+*/

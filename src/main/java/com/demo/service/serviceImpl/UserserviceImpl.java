@@ -1,7 +1,7 @@
 package com.demo.service.serviceImpl;
 
 import com.demo.domain.User;
-import com.demo.listener.event.DemoApplicationEvent;
+//import com.demo.listener.event.DemoApplicationEvent;
 import com.demo.mapper.UserMapper;
 import com.demo.service.UserService;
 import org.springframework.context.ApplicationContext;
@@ -28,7 +28,7 @@ public class UserserviceImpl implements UserService {
 
         int id = userMapper.insert(user);
 
-        applicationContext.publishEvent(new DemoApplicationEvent(this,user));
+//        applicationContext.publishEvent(new DemoApplicationEvent(this,user));
         return id;
     }
 
