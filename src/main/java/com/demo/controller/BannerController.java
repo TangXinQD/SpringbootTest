@@ -29,7 +29,7 @@ public class BannerController {
     @Resource
     private BannerService bannerService;
 
-    @SystemControllerLog(description = "bannerController")
+    @SystemControllerLog(description = "bannerController",value = "#banner.title")
     @ApiOperation(value = "添加banner",notes = "添加banner",httpMethod = "POST",produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping
     public Object add(@RequestBody  Banner banner) throws Exception{

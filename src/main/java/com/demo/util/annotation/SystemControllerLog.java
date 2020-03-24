@@ -13,4 +13,6 @@ import java.lang.annotation.*;
 public @interface SystemControllerLog {
 
     String description() default "";
+
+    String value();
 }
