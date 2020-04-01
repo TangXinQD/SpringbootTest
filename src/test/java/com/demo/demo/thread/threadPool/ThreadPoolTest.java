@@ -1,12 +1,12 @@
 /**
- * Copyright (C), 2015-2019, XXXÓĞÏŞ¹«Ë¾
+ * Copyright (C), 2015-2019, XXXæœ‰é™å…¬å¸
  * FileName: ThreadPoolTest
  * Author:   TX
  * Date:     2019/4/9 16:53
- * Description: Ïß³Ì³Ø²âÊÔ
+ * Description: çº¿ç¨‹æ± æµ‹è¯•
  * History:
  * <author>          <time>          <version>          <desc>
- * ×÷ÕßĞÕÃû           ĞŞ¸ÄÊ±¼ä           °æ±¾ºÅ              ÃèÊö
+ * ä½œè€…å§“å           ä¿®æ”¹æ—¶é—´           ç‰ˆæœ¬å·              æè¿°
  */
 package com.demo.demo.thread.threadPool;
 
@@ -16,7 +16,7 @@ import java.util.concurrent.*;
 
 /**
  *
- * ¡´Ïß³Ì³Ø²âÊÔ¡µ
+ * ã€ˆçº¿ç¨‹æ± æµ‹è¯•ã€‰
  *
  * @author TX
  * @create 2019/4/9
@@ -41,12 +41,12 @@ public class ThreadPoolTest {
 
     private static void futureTaskTest() {
         FutureTask<String> task1 = new FutureTask<String>(()->{
-            System.out.println("FutureTask1ÔËĞĞ£º"+Thread.currentThread().getName());
+            System.out.println("FutureTask1è¿è¡Œï¼š"+Thread.currentThread().getName());
             return Thread.currentThread().getName();
         });
 
         FutureTask<String> task2 = new FutureTask<String>(()->{
-            System.out.println("FutureTask2ÔËĞĞ£º"+Thread.currentThread().getName());
+            System.out.println("FutureTask2è¿è¡Œï¼š"+Thread.currentThread().getName());
             return Thread.currentThread().getName();
         });
 
@@ -63,7 +63,7 @@ public class ThreadPoolTest {
                     return;
                 }
 
-                if(!task1.isDone()){ // ÈÎÎñ1Ã»ÓĞÍê³É£¬»áµÈ´ı£¬Ö±µ½ÈÎÎñÍê³É
+                if(!task1.isDone()){ // ä»»åŠ¡1æ²¡æœ‰å®Œæˆï¼Œä¼šç­‰å¾…ï¼Œç›´åˆ°ä»»åŠ¡å®Œæˆ
                     System.out.println("FutureTask1 output="+task1.get());
                 }
 
@@ -86,7 +86,7 @@ public class ThreadPoolTest {
 
     private static void executorTest() {
         for (int i = 0 ; i <= 10 ; i++){
-            exs.execute(()-> {System.out.println(Thread.currentThread().getName()+"Ïß³ÌÔËĞĞ£¡");});
+            exs.execute(()-> {System.out.println(Thread.currentThread().getName()+"çº¿ç¨‹è¿è¡Œï¼");});
         }
     }
 
