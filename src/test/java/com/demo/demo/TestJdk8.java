@@ -3,16 +3,12 @@ package com.demo.demo;
 import com.demo.demo.LambdaDemo.BufferedReaderProcessor;
 import com.demo.demo.LambdaDemo.Role;
 import com.demo.demo.LambdaDemo.User;
-import com.demo.demo.kyTest.GetResultVo;
-import com.demo.util.BeanHelper;
+import org.json.JSONObject;
 import org.springframework.context.annotation.PropertySource;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -45,7 +41,7 @@ public class TestJdk8 {
         String start = localDate.with(TemporalAdjusters.firstDayOfMonth()).toString();
         String end = localDate.with(TemporalAdjusters.lastDayOfMonth()).toString() +" 23:59:59";
         System.out.println(start+"--"+end);*/
-        GetResultVo vo = new GetResultVo();
+        /*GetResultVo vo = new GetResultVo();
         vo.setImgCode(" a ");
         vo.setBankCode(" b ");
         vo.setImgCode(" c ");
@@ -53,7 +49,14 @@ public class TestJdk8 {
 
         BeanHelper.beanAttributeValueTrim(vo);
 
-        System.out.println(vo);
+        System.out.println(vo);*/
+
+//        rue6wN35a5SyI5j+VUZsMA==
+
+//        String decode = CryptLib.encode("62204848000000");
+//        String data ="CJxgt98LJNmpZk5U7swfRA==";
+
+
 
     }
 

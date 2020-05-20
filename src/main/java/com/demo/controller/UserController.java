@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +82,23 @@ public class UserController {
         logger.info("id:{}",id);
         LocalDateTime time = LocalDateTime.now();
         throw new UserException("errorCode","Do not find user!!");
+    }
+
+    /**
+     *
+     * @return
+     */
+    @ApiOperation(value="测试",httpMethod = "GET")
+    @GetMapping("/test")
+    public  Object test(){
+        LocalDateTime time = LocalDateTime.now();
+        Map<String,Object> map = new LinkedHashMap<>();
+        map.put("time",time);
+        User user = new User();
+        user.setCreateTime(new Date());
+        user.setLastModifyTime(new Date());
+        map.put("user",user);
+        return map;
     }
 
 }
