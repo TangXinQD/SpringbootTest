@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: demo
+#  profiles:
+#    active: dev
+  datasource:
+    url: jdbc:mysql://10.10.111.129:3306/agent_product
+    username: agent_product_rw
+    password: haoshikisses
+    driver-class-name: com.mysql.jdbc.Driver
+  aop:
+    proxy-target-class: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    dateFormat2: yyyy-MM-dd HH:mm:ss
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
