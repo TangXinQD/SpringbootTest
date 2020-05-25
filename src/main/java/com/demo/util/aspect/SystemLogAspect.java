@@ -5,7 +5,6 @@ import com.demo.service.LogService;
 import com.demo.util.annotation.SystemControllerLog;
 import com.demo.util.annotation.SystemServiceLog;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
