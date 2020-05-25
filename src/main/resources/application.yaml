@@ -16,7 +16,6 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-    dateFormat2: yyyy-MM-dd HH:mm:ss
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
