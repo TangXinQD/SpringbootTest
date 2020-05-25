@@ -7,9 +7,9 @@ spring:
 #  profiles:
 #    active: dev
   datasource:
-    url: jdbc:mysql://10.10.111.129:3306/agent_product
-    username: agent_product_rw
-    password: haoshikisses
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
   aop:
     proxy-target-class: true
