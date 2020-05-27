@@ -5,22 +5,31 @@ import com.demo.domain.XYTS;
 import com.demo.exception.UserException;
 import com.demo.mapper.BannerMapper;
 import com.demo.service.UserService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Api(value = "用户管理",description = "用户管理")
 @RestController
 @RequestMapping("/user")
@@ -90,7 +99,8 @@ public class UserController {
      */
     @ApiOperation(value="测试",httpMethod = "GET")
     @GetMapping("/test")
-    public  Object test(){
+    public  Object test(Date date){
+        log.info("date->{}",date.toString());
         LocalDateTime time = LocalDateTime.now();
         Map<String,Object> map = new LinkedHashMap<>();
         map.put("time",time);
@@ -99,6 +109,27 @@ public class UserController {
         user.setLastModifyTime(new Date());
         map.put("user",user);
         return map;
+    }
+
+    @InitBinder
+    protected void init(HttpServletRequest request, ServletRequestDataBinder binder) {
+        // 自定义一个dateFormat，前端传过来的是string形式的1550246400000，转换成date
+        DateFormat dateFormat = new DateFormat() {
+            @Override
+            public StringBuffer format(Date date, StringBuffer toAppendTo, FieldPosition fieldPosition) {
+                toAppendTo.append(date.getTime()+"");
+                return toAppendTo;
+            }
+
+            @Override
+            public Date parse(String source, ParsePosition pos) {
+                Date date = new Date(Long.parseLong(source));
+                pos.setIndex(source.length());
+                return date;
+            }
+        };
+
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
 }
