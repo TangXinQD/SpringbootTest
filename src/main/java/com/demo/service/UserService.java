@@ -8,4 +8,6 @@ import com.demo.domain.User; /**
 public interface UserService {
 
     int insert(User user);
+
+    User findById(int i);
 }

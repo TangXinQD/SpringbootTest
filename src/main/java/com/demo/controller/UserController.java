@@ -29,6 +29,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author TX
+ */
 @Slf4j
 @Api(value = "用户管理",description = "用户管理")
 @RestController
@@ -72,9 +75,8 @@ public class UserController {
     @ApiOperation(value="修改用户",httpMethod = "POST")
     @PostMapping("/update")
     public  Object update(@RequestBody User user){
-        String userName = user.getUserName();
-        System.out.println(userName);
 
+        userService.insert(user);
         return null;
     }
 
@@ -100,15 +102,10 @@ public class UserController {
     @ApiOperation(value="测试",httpMethod = "GET")
     @GetMapping("/test")
     public  Object test(Date date){
-        log.info("date->{}",date.toString());
-        LocalDateTime time = LocalDateTime.now();
-        Map<String,Object> map = new LinkedHashMap<>();
-        map.put("time",time);
-        User user = new User();
-        user.setCreateTime(new Date());
-        user.setLastModifyTime(new Date());
-        map.put("user",user);
-        return map;
+
+
+        User byId = userService.findById(1);
+        return byId;
     }
 
     @InitBinder

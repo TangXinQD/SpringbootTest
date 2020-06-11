@@ -4,10 +4,12 @@ import com.demo.domain.User;
 //import com.demo.listener.event.DemoApplicationEvent;
 import com.demo.mapper.UserMapper;
 import com.demo.service.UserService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @Auther: TX
@@ -28,8 +30,20 @@ public class UserserviceImpl implements UserService {
 
         int id = userMapper.insert(user);
 
-//        applicationContext.publishEvent(new DemoApplicationEvent(this,user));
+//
         return id;
+    }
+
+    @Cacheable(cacheNames = "user",key = "#id")
+    @Override
+    public User findById(int id) {
+        User user = new User();
+        user.setId(1L);
+        user.setUserName("111");
+        user.setComment("2的叫法打架了");
+        user.setCreateTime(new Date());
+        user.setLastModifyTime(new Date());
+        return user;
     }
 
    /* @Async

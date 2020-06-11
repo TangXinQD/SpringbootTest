@@ -31,24 +31,33 @@ public class MybatisPlusGenerator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("jobob");
+        gc.setAuthor("TX");
         gc.setOpen(false);
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8");
+//        dsc.setUrl("jdbc:mysql://rm-2vc87p49dgo1nzl38bo.mysql.cn-chengdu.rds.aliyuncs.com:3306/nearby_test?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://192.167.69.58:3306/oaapp?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setPassword("123456");
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.demo.domain.generator");
+        String moduleName = scanner("模块名");
+        if(StringUtils.isNotBlank(moduleName)){
+            moduleName = "."+moduleName;
+        }
+        pc.setEntity("db.domain"+moduleName);
+        pc.setService("server.service"+moduleName);
+        pc.setServiceImpl("server.service"+moduleName+".impl");
+        pc.setMapper("db.mapper"+moduleName);
+        pc.setController("server.rest"+moduleName);
+        pc.setParent("com.lianlian.brand");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -119,7 +128,7 @@ public class MybatisPlusGenerator {
         strategy.setSuperEntityColumns("id");
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
+//        strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
 //        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();

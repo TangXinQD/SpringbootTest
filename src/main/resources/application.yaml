@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
@@ -19,3 +19,12 @@ spring:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
+
+
+# redis分布式锁
+redisson:
+  address: redis://192.167.249.180:6379
+  password: '123456'
+  database: 5
+  connectionPoolSize: 4
+  connectionMinimumIdleSize: 4
