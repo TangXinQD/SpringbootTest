@@ -28,3 +28,12 @@ redisson:
   database: 5
   connectionPoolSize: 4
   connectionMinimumIdleSize: 4
+
+
+# mq
+rocketmq:
+  accessKey: 1
+  secretKey: 1
+  nameSrvAddr: 192.167.249.180:9876
+  groupId: demo-spring-boot
+  sendMsgTimeoutMillis: 5000
