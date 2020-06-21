@@ -101,10 +101,10 @@ public class UserController {
      */
     @ApiOperation(value="测试",httpMethod = "GET")
     @GetMapping("/test")
-    public  Object test(Date date){
+    public  Object test(int id){
 
 
-        User byId = userService.findById(1);
+        User byId = userService.findById(id);
         return byId;
     }
 

@@ -22,6 +22,7 @@ public class GlobalExceptionController {
 //        logger.info("code:{},msg :{}",e.getMessage(),e.getCause().getMessage());
         ErrorInfo<String> errorInfo = new ErrorInfo();
         errorInfo.setMessage(e.getMessage());
+        logger.error("exception->",e);
         //.....
         return  errorInfo;
     }

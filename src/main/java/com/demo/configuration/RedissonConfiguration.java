@@ -5,6 +5,7 @@ import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.client.codec.JsonJacksonMapCodec;
 import org.redisson.codec.FstCodec;
+import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.codec.SmileJacksonCodec;
 import org.redisson.config.Config;
 import org.redisson.config.SingleServerConfig;
@@ -40,17 +41,17 @@ public class RedissonConfiguration {
      */
     @Bean
     @ConditionalOnProperty(name = "redisson.address")
-    RedissonClient redissonSingle(RedissonProperties redssionProperties) {
+    RedissonClient redissonSingle(RedissonProperties redissonProperties) {
         Config config = new Config();
         SingleServerConfig serverConfig = config.useSingleServer()
-                .setAddress(redssionProperties.getAddress())
-                .setDatabase(redssionProperties.getDatabase())
-                .setTimeout(redssionProperties.getTimeout())
-                .setConnectionPoolSize(redssionProperties.getConnectionPoolSize())
-                .setConnectionMinimumIdleSize(redssionProperties.getConnectionMinimumIdleSize());
+                .setAddress(redissonProperties.getAddress())
+                .setDatabase(redissonProperties.getDatabase())
+                .setTimeout(redissonProperties.getTimeout())
+                .setConnectionPoolSize(redissonProperties.getConnectionPoolSize())
+                .setConnectionMinimumIdleSize(redissonProperties.getConnectionMinimumIdleSize());
 
-        if (StringUtils.isNotBlank(redssionProperties.getPassword())) {
-            serverConfig.setPassword(redssionProperties.getPassword());
+        if (StringUtils.isNotBlank(redissonProperties.getPassword())) {
+            serverConfig.setPassword(redissonProperties.getPassword());
         }
 
         return Redisson.create(config);
@@ -59,8 +60,8 @@ public class RedissonConfiguration {
     @Bean
     public CacheManager cacheManager(RedissonClient redissonClient ) {
         Map<String, CacheConfig> config = new HashMap<>(8);
-        config.put("bootCache", new CacheConfig(30*60*1000, 15*60*1000));
-        return new RedissonSpringCacheManager(redissonClient, config);
+        config.put("user", new CacheConfig(1*60*1000, 15*60*1000));
+        return new RedissonSpringCacheManager(redissonClient, config,new JsonJacksonCodec());
     }
 
 
