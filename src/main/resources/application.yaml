@@ -23,9 +23,10 @@ mybatis-plus:
 
 # redis分布式锁
 redisson:
-  address: redis://192.167.249.180:6379
-  password: '123456'
-  database: 5
+#  address: redis://192.167.249.180:6379
+  address: redis://localhost:6379
+#  password: '123456'
+  database: 0
   connectionPoolSize: 4
   connectionMinimumIdleSize: 4
 

@@ -46,9 +46,6 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @Autowired
-    private RedissonClient redissonClient;
-
     /**
      *
      * @param user 用户信息
