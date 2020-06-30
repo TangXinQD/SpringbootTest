@@ -11,8 +11,12 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RBloomFilter;
+import org.redisson.api.RedissonClient;
+import org.redisson.client.codec.StringCodec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -41,6 +45,9 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @Autowired
+    private RedissonClient redissonClient;
 
     /**
      *
@@ -103,9 +110,18 @@ public class UserController {
     @GetMapping("/test")
     public  Object test(Date date){
 
+        RBloomFilter<String> rBloomFilter = redissonClient.getBloomFilter("testBloom", StringCodec.INSTANCE);
+        rBloomFilter.tryInit(1000L, 0.01);
+        rBloomFilter.add("ddd");
+        rBloomFilter.add("ff");
+        rBloomFilter.add("ee");
 
-        User byId = userService.findById(1);
-        return byId;
+        System.out.println(rBloomFilter.contains("ddd"));
+        System.out.println(rBloomFilter.contains("fffff"));
+        System.out.println(rBloomFilter.contains("ddddddd"));
+
+//        User byId = userService.findById(1);
+        return null;
     }
 
     @InitBinder

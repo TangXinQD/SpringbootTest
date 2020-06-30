@@ -19,7 +19,7 @@ public class GlobalExceptionController {
 
     @ExceptionHandler(Exception.class)
     public Object globalException(HttpServletRequest request , Exception e ){
-//        logger.info("code:{},msg :{}",e.getMessage(),e.getCause().getMessage());
+        logger.error("Exception->",e);
         ErrorInfo<String> errorInfo = new ErrorInfo();
         errorInfo.setMessage(e.getMessage());
         //.....
