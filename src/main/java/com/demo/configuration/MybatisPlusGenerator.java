@@ -39,9 +39,9 @@ public class MybatisPlusGenerator {
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
 //        dsc.setUrl("jdbc:mysql://rm-2vc87p49dgo1nzl38bo.mysql.cn-chengdu.rds.aliyuncs.com:3306/nearby_test?useUnicode=true&useSSL=false&characterEncoding=utf8");
-        dsc.setUrl("jdbc:mysql://192.167.69.58:3306/oaapp?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://192.167.69.58:3306/nearby_test?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
         mpg.setDataSource(dsc);

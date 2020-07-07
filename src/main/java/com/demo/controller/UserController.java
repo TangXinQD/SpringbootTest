@@ -107,7 +107,7 @@ public class UserController {
     @GetMapping("/test")
     public  Object test(Date date){
 
-        RBloomFilter<String> rBloomFilter = redissonClient.getBloomFilter("testBloom", StringCodec.INSTANCE);
+       /* RBloomFilter<String> rBloomFilter = redissonClient.getBloomFilter("testBloom", StringCodec.INSTANCE);
         rBloomFilter.tryInit(1000L, 0.01);
         rBloomFilter.add("ddd");
         rBloomFilter.add("ff");
@@ -115,7 +115,7 @@ public class UserController {
 
         System.out.println(rBloomFilter.contains("ddd"));
         System.out.println(rBloomFilter.contains("fffff"));
-        System.out.println(rBloomFilter.contains("ddddddd"));
+        System.out.println(rBloomFilter.contains("ddddddd"));*/
 
 //        User byId = userService.findById(1);
         return null;
