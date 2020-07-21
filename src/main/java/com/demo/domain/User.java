@@ -8,25 +8,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@ApiModel(value = "user",description = "entity")
+@ApiModel(value = "user",description = "用户信息")
 public class User  implements Serializable{
 
 //    @ApiModelProperty(name = "id",value = "id",required = true)
     private Long id;
 
-    @ApiModelProperty(name = "userName",value = "userName",required = true)
+    @ApiModelProperty(name = "userName",value = "用户名",required = true)
     private String userName;
-    @ApiModelProperty(name = "password",value = "password",required = true)
+    @ApiModelProperty(name = "password",value = "密码",required = true)
     private String password;
 
     private String salt;
-    @ApiModelProperty(name = "comment",value = "comment",required = true)
+    @ApiModelProperty(name = "comment",value = "内容",required = true)
     private String comment;
 
     private Date createTime;
 
     private Date lastModifyTime;
-    @ApiModelProperty(name = "mobile",value = "mobile",required = true)
+    @ApiModelProperty(name = "mobile",value = "电话号码",required = true)
     private String mobile;
 
 }
