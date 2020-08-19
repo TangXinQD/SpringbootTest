@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Properties;
 
 //项目中加上 @Configuration 注解，这样服务启动时consumer也启动了
-@Configuration
+//@Configuration
 public class ConsumerClient {
 
     @Autowired
@@ -23,7 +23,7 @@ public class ConsumerClient {
     @Autowired
     private DemoMessageListener messageListener;
 
-    @Bean(initMethod = "start", destroyMethod = "shutdown")
+//    @Bean(initMethod = "start", destroyMethod = "shutdown")
     public ConsumerBean buildConsumer() {
         ConsumerBean consumerBean = new ConsumerBean();
         //配置文件

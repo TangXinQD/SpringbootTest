@@ -11,13 +11,13 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2020/6/6 9:54 上午
  * @author: TX
  **/
-@Configuration
+//@Configuration
 public class ProducerClient {
 
-    @Autowired
+//    @Autowired
     private RocketMqProperties mqProperties;
 
-    @Bean(initMethod = "start", destroyMethod = "shutdown")
+//    @Bean(initMethod = "start", destroyMethod = "shutdown")
     public ProducerBean buildProducer() {
         ProducerBean producer = new ProducerBean();
         producer.setProperties(mqProperties.getMqProperties());

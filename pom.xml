@@ -194,6 +194,19 @@
 			<version>1.0.2</version>
 		</dependency>
 
+<!--		京东 asyncTool-->
+<!--		<dependency>-->
+<!--			<groupId>com.gitee.jd-platform-opensource</groupId>-->
+<!--			<artifactId>asyncTool</artifactId>-->
+<!--			<version>V1.3-SNAPSHOT</version>-->
+<!--		</dependency>-->
+
+		<dependency>
+			<groupId>com.lianlian.ll-lib</groupId>
+			<artifactId>mq-client</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -205,5 +218,11 @@
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 
 </project>

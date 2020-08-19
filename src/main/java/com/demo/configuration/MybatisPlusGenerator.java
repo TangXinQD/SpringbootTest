@@ -33,13 +33,14 @@ public class MybatisPlusGenerator {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("TX");
         gc.setOpen(false);
+        gc.setEntityName("%sDO");
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
 //        dsc.setUrl("jdbc:mysql://rm-2vc87p49dgo1nzl38bo.mysql.cn-chengdu.rds.aliyuncs.com:3306/nearby_test?useUnicode=true&useSSL=false&characterEncoding=utf8");
-        dsc.setUrl("jdbc:mysql://192.167.69.58:3306/nearby_test?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://192.167.69.58:3306/group_purchase?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
@@ -57,7 +58,7 @@ public class MybatisPlusGenerator {
         pc.setServiceImpl("server.service"+moduleName+".impl");
         pc.setMapper("db.mapper"+moduleName);
         pc.setController("server.rest"+moduleName);
-        pc.setParent("com.lianlian.brand");
+        pc.setParent("com.lianlian.group.purchase");
         mpg.setPackageInfo(pc);
 
         // 自定义配置

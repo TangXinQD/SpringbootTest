@@ -10,8 +10,8 @@ import java.util.Properties;
  * @author TX
  * MQ 配置
  */
-@Configuration
-@ConfigurationProperties(prefix = "rocketmq")
+//@Configuration
+//@ConfigurationProperties(prefix = "rocketmq")
 public class RocketMqProperties {
 
     private String accessKey;

@@ -4,6 +4,8 @@ import com.demo.domain.Banner;
 import com.demo.mapper.BannerMapper;
 import com.demo.service.BannerService;
 import com.demo.util.annotation.SystemServiceLog;
+import com.lianlian.lib.mq.client.MqProducerClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,6 +19,9 @@ import javax.annotation.Resource;
 public class BannerServiceImpl  implements BannerService{
     @Resource
     private BannerMapper bannerMapper;
+
+    @Autowired
+    private MqProducerClient producerClient;
 
     @SystemServiceLog(description = "bannerService")
     @Override
