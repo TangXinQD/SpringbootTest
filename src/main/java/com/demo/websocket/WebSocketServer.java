@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
-@ServerEndpoint("/websocket/{type}/{username}")
-@Component
+//@ServerEndpoint("/websocket/{type}/{username}")
+//@Component
 public class WebSocketServer {
 
     /**静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。*/
@@ -32,7 +32,7 @@ public class WebSocketServer {
      * @param username 登录名
      * @param type  登录平台 WEB、OPERATION
      */
-    @OnOpen
+//    @OnOpen
     public void onOpen(Session session,@PathParam("username") String username,@PathParam("type") String type) {
         this.session = session;
         this.userId=username;
@@ -74,7 +74,7 @@ public class WebSocketServer {
      *
      * @param message 客户端发送过来的消息
      * */
-    @OnMessage
+//    @OnMessage
     public void onMessage(String message, Session session) {
         log.info("用户消息:"+userId+",报文:"+message);
         //可以群发消息
@@ -104,7 +104,7 @@ public class WebSocketServer {
      * @param session
      * @param error
      */
-    @OnError
+//    @OnError
     public void onError(Session session, Throwable error) {
         log.error("用户错误:"+this.userId+",原因:"+error.getMessage());
         error.printStackTrace();

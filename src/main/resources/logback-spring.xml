@@ -13,7 +13,7 @@
     </appender>
     <!-- 本地环境:info级别-->
     <springProfile name="local">
-        <root level="DEBUG">
+        <root level="INFO">
             <appender-ref ref="STDOUT"/>
         </root>
     </springProfile>
