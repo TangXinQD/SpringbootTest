@@ -16,14 +16,14 @@ import lombok.NoArgsConstructor;
 @Data
 public class LeaderMapDTO {
 
-    private String address;
+    private String detail;
 
-    @JSONField(name = "citycode" )
-    private String cityCode;
+//    @JSONField(name = "yourcode" )
+//    private String yourcode;
 
 //    @JSONField(name = "headimg" )
 //    private String headImg;
 
-    private String name;
+//    private String name;
 
 }

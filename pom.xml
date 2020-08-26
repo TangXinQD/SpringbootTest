@@ -201,11 +201,11 @@
 			<version>V1.3-SNAPSHOT</version>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>com.lianlian.ll-lib</groupId>
 			<artifactId>mq-client</artifactId>
 			<version>1.0.4</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>cn.hutool</groupId>

@@ -15,5 +15,7 @@ import java.util.List;
 public interface CloudMapService {
     Object saveData(String table, List<TencentMapDTO> list) throws JsonProcessingException;
 
-    Object geoCoder(BigDecimal lat,BigDecimal lng) throws JsonProcessingException;
+    Object saveDataTest(String table, List<TencentMapDTO> list) throws JsonProcessingException;
+
+    Object geoCoder(BigDecimal lat, BigDecimal lng) throws JsonProcessingException;
 }
