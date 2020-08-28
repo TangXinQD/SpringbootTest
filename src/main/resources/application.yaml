@@ -7,15 +7,20 @@ spring:
   profiles:
     active: local
   datasource:
-    url: jdbc:mysql://localhost:3306/test
-    username: root
-    password: root
+#    url: jdbc:mysql://localhost:3306/test
+#    username: root
+#    password: root
+    url: jdbc:mysql://rm-2vcg431j388xlt5541o.mysql.cn-chengdu.rds.aliyuncs.com:3306/nearby_travel
+    username: aliyun_test
+    password: testRootZby!2020@
     driver-class-name: com.mysql.jdbc.Driver
   aop:
     proxy-target-class: true
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false

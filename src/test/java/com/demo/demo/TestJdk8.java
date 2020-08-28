@@ -4,6 +4,7 @@ import cn.hutool.crypto.SecureUtil;
 import com.demo.demo.LambdaDemo.BufferedReaderProcessor;
 import com.demo.demo.LambdaDemo.Role;
 import com.demo.demo.LambdaDemo.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.util.DigestUtils;
@@ -24,12 +25,13 @@ import java.util.stream.Collectors;
 public class TestJdk8 {
 
     public static void  main(String [] args) throws Exception {
-        String params = "/place_cloud/data/create?data=[{\"ud_id\":\"156985\",\"title\":\"海淀区苏州街营业部\",\"location\":{\"lat\":39.983988,\"lng\":116.307709},\"x\":{\"price\":15.5}}]&key=KQVBZ-CP7HX-YMK4G-73ELK-GU7JV-SJFYU&table_id=5f43c84f1773c74f4548f0faaUkOIXFwAXtJEoyPAxd9aGfEzOs5r77";
-        System.out.println(params);
-        String s1 = SecureUtil.md5().digestHex(params);
-        String s = DigestUtils.md5DigestAsHex(params.getBytes());
-        System.out.println(s);
-        System.out.println(s1);
+//        String params = "/place_cloud/data/create?data=[{\"ud_id\":\"156985\",\"title\":\"海淀区苏州街营业部\",\"location\":{\"lat\":39.983988,\"lng\":116.307709},\"x\":{\"price\":15.5}}]&key=KQVBZ-CP7HX-YMK4G-73ELK-GU7JV-SJFYU&table_id=5f43c84f1773c74f4548f0faaUkOIXFwAXtJEoyPAxd9aGfEzOs5r77";
+//        System.out.println(params);
+//        String s1 = SecureUtil.md5().digestHex(params);
+//        String s = DigestUtils.md5DigestAsHex(params.getBytes());
+//        System.out.println(s);
+//        System.out.println(s1);
+
 //        optionalTest();
 /*
         List<Integer> list = new ArrayList<>();

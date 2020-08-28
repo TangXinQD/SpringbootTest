@@ -1,15 +1,14 @@
 package com.demo.demo;
 
 import com.demo.txmap.CloudMapService;
-import com.demo.txmap.model.LeaderMapDTO;
 import com.demo.txmap.model.Location;
 import com.demo.txmap.model.TencentMapDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -27,9 +26,12 @@ public class CloudMapTest {
 
     private final CloudMapService cloudMapService;
 
+    private final ObjectMapper objectMapper;
+
     @Autowired
-    public CloudMapTest(CloudMapService cloudMapService) {
+    public CloudMapTest(CloudMapService cloudMapService, ObjectMapper objectMapper) {
         this.cloudMapService = cloudMapService;
+        this.objectMapper = objectMapper;
     }
 
     @Test
@@ -37,7 +39,7 @@ public class CloudMapTest {
         List<TencentMapDTO> list = Lists.newLinkedList();
 
         TencentMapDTO dto = new TencentMapDTO();
-        dto.setUdId("1266814987");
+        dto.setUdId("1266814980");
         dto.setLocation(new Location(new BigDecimal("30.546125"),new BigDecimal("104.066459")));
         dto.setTitle("新希望国际B座");
         HashMap<Object, Object> map = Maps.newHashMap();
@@ -88,5 +90,13 @@ public class CloudMapTest {
     @Test
     void testGeoCoder() throws IOException {
         Object o = cloudMapService.geoCoder(new BigDecimal("30.546120"), new BigDecimal("104.066464"));
+    }
+
+    @Test
+    void testJackson() throws IOException {
+        TencentMapDTO map = new TencentMapDTO();
+        map.setUdId("2414324432");
+        String s = objectMapper.writeValueAsString(map);
+        System.out.println(s);
     }
 }
