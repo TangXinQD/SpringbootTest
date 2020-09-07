@@ -11,6 +11,7 @@ import com.demo.txmap.model.TencentMapFinalDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
+import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -49,7 +50,7 @@ public class CloudMapServiceImpl implements CloudMapService {
     public Object saveData(String table, List<TencentMapDTO> list) throws JsonProcessingException {
         TencentMapFinalDTO dto = new TencentMapFinalDTO(key,table, list);
 
-        StringBuilder signStr = new StringBuilder("/place_cloud/data/create");
+       /* StringBuilder signStr = new StringBuilder("/place_cloud/data/create");
         signStr.append("?").append(sort(dto)).append(sign);
         log.info("signStr->{}",signStr);
         String sig = DigestUtils.md5DigestAsHex(signStr.toString().getBytes());
@@ -60,8 +61,8 @@ public class CloudMapServiceImpl implements CloudMapService {
         log.info("request->{}",s1);
         StringBuilder urlStr = new StringBuilder(url);
         urlStr.append("?sig=").append(sig);
-        log.info("url->{}",urlStr);
-        String response = HttpUtil.post(urlStr.toString(), s1);
+        log.info("url->{}",urlStr);*/
+        String response = HttpUtil.post(url, JSONObject.toJSONString(dto));
 
         log.info("response->{}",response);
         return response;
