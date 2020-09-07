@@ -1,32 +1,20 @@
 package com.demo.txmap;
 
-import cn.hutool.crypto.SecureUtil;
 import cn.hutool.http.HttpUtil;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.demo.txmap.model.TencentMapDTO;
 import com.demo.txmap.model.TencentMapFinalDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
-import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
-import sun.security.provider.MD5;
 
-import javax.servlet.http.HttpUtils;
 import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * @author TX
@@ -40,7 +28,7 @@ public class CloudMapServiceImpl implements CloudMapService {
 
     private String key = "PW4BZ-FM7C3-5523I-YQSNI-53RX5-ECBMY";
 
-    private String sign = "rbGbbYw3RPmRo0cTwPpK4gEp4tGQ1dN";
+    private String sign = "w3ONkgv7xr2rxjAHclGzM7N00YfWfCjJ";
 
     private String url = "https://apis.map.qq.com/place_cloud/data/create";
 
@@ -48,10 +36,11 @@ public class CloudMapServiceImpl implements CloudMapService {
 
     @Override
     public Object saveData(String table, List<TencentMapDTO> list) throws JsonProcessingException {
-        TencentMapFinalDTO dto = new TencentMapFinalDTO(key,table, list);
+        TencentMapFinalDTO dto = new TencentMapFinalDTO("PW4BZ-FM7C3-5523I-YQSNI-53RX5-ECBMY",table, list);
 
-       /* StringBuilder signStr = new StringBuilder("/place_cloud/data/create");
-        signStr.append("?").append(sort(dto)).append(sign);
+        StringBuilder signStr = new StringBuilder("/place_cloud/data/create");
+        signStr.append("?").append(sort(dto)).append("w3ONkgv7xr2rxjAHclGzM7N00YfWfCjJ");
+        System.out.println(signStr);
         log.info("signStr->{}",signStr);
         String sig = DigestUtils.md5DigestAsHex(signStr.toString().getBytes());
         log.info("sig->{}",sig);
@@ -61,8 +50,31 @@ public class CloudMapServiceImpl implements CloudMapService {
         log.info("request->{}",s1);
         StringBuilder urlStr = new StringBuilder(url);
         urlStr.append("?sig=").append(sig);
-        log.info("url->{}",urlStr);*/
-        String response = HttpUtil.post(url, JSONObject.toJSONString(dto));
+        log.info("url->{}",urlStr);
+        String response = HttpUtil.post(urlStr.toString(), s1);
+
+        log.info("response->{}",response);
+        return response;
+    }
+
+    @Override
+    public Object saveDataTest(String table, List<TencentMapDTO> list) throws JsonProcessingException {
+        TencentMapFinalDTO dto = new TencentMapFinalDTO("KQVBZ-CP7HX-YMK4G-73ELK-GU7JV-SJFYU",table, list);
+
+        StringBuilder signStr = new StringBuilder("/place_cloud/data/create");
+        signStr.append("?").append(sort(dto)).append("aUkOIXFwAXtJEoyPAxd9aGfEzOs5r77");
+        System.out.println(signStr);
+        log.info("signStr->{}",signStr);
+        String sig = DigestUtils.md5DigestAsHex(signStr.toString().getBytes());
+        log.info("sig->{}",sig);
+
+        String s1 = JSONObject.toJSONString(dto);
+
+        log.info("request->{}",s1);
+        StringBuilder urlStr = new StringBuilder(url);
+        urlStr.append("?sig=").append(sig);
+        log.info("url->{}",urlStr);
+        String response = HttpUtil.post(urlStr.toString(), s1);
 
         log.info("response->{}",response);
         return response;
