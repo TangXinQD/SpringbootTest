@@ -4,12 +4,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.demo.domain.XYTS;
 import com.demo.mapper.BannerMapper;
+import com.demo.service.TransactionTestService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -64,5 +66,14 @@ public class DemoApplicationTests {
 		});
 
 	}
+
+	@Resource
+	private TransactionTestService transactionTestService;
+
+	@Test
+	public void testTransactional() throws Exception {
+		transactionTestService.A();
+	}
+
 
 }
