@@ -1,3 +1,4 @@
+/*
 package com.demo.demo.asyncTool;
 
 import com.jd.platform.async.callback.ICallback;
@@ -11,12 +12,14 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+*/
 /**
  * @description: AsyncToolTest
  * @date: 2020/7/10 4:49 下午
  * @author: TX
  * @version: 1.0
- */
+ *//*
+
 @Slf4j
 public class AsyncToolTest {
 
@@ -72,7 +75,8 @@ public class AsyncToolTest {
         Async.shutDown();
     }
 
-    /**
+    */
+/**
      * @description  并行
      *               1
      *               2
@@ -80,7 +84,8 @@ public class AsyncToolTest {
      * @version 1.0 
      * @date 2020/8/21 2:48 下午 
      * @author TX 
-     **/
+     **//*
+
     private static void parallelWorker() throws ExecutionException, InterruptedException {
         IWorkDemo w1 = new IWorkDemo();
         IWorkDemo w2 = new IWorkDemo();
@@ -149,3 +154,4 @@ public class AsyncToolTest {
     }
 
 }
+*/
