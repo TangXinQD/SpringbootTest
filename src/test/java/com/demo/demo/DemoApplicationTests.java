@@ -3,8 +3,10 @@ package com.demo.demo;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.demo.domain.XYTS;
+import com.demo.factory.ProductFactory;
 import com.demo.mapper.BannerMapper;
 import com.demo.service.TransactionTestService;
+import com.demo.strategy.ProductStrategy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class DemoApplicationTests {
 
 	@Autowired
 	private BannerMapper bannerMapper;
+
+	@Autowired
+	private ProductFactory productFactory;
 
 	@Test
 	public void contextLoads() {
@@ -75,5 +80,10 @@ public class DemoApplicationTests {
 		transactionTestService.A();
 	}
 
+	@Test
+	public void testProductStrategy(){
+		ProductStrategy productStrategy = productFactory.getProductStrategy(2, 0);
+		List<Object> objects = productStrategy.buildSku(new Object());
+	}
 
 }
